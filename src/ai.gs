@@ -17,7 +17,7 @@ function chat(room, message) {
     'headers': headers,
     'payload': JSON.stringify(
       {
-        'model': 'gpt-3.5-turbo',
+        'model': 'gpt-3.5-turbo-0613',
         'messages': history
       }
     ),
