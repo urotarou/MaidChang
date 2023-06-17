@@ -1,3 +1,6 @@
+// =================================
+// Cache系
+// =================================
 function isCachedKey(key) {
   const cache = CacheService.getScriptCache()
   const isCached = cache.get(key)
@@ -10,10 +13,6 @@ function isCachedKey(key) {
   }
 }
 
-function withoutMention(message) {
-  return message.replace(/^<.+> /, "").trim()
-}
-
 function saveValue(key, value) {
   const cache = CacheService.getScriptCache()
 
@@ -24,4 +23,11 @@ function loadValue(key) {
   const cache = CacheService.getScriptCache()
 
   return cache.get(key)
+}
+
+// =================================
+// 文字列系
+// =================================
+function withoutMention(message) {
+  return message.replace(/^<.+> /, "").trim()
 }
