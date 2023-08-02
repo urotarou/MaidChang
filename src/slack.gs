@@ -2,12 +2,12 @@ function isSlackApiVerification(data) {
   return data.type == "url_verification"
 }
 
-function sendMessage(channelId, message) {
+function sendMessage(channelId, message, option) {
   const token = getSlackBotToken()
 
   const slackApp = SlackApp.create(token)
 
-  slackApp.postMessage(channelId, message)
+  slackApp.postMessage(channelId, message, option)
 }
 
 // ===================

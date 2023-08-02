@@ -14,9 +14,13 @@ function doPost(event) {
 
   const channelId = data.event.channel
   const userMessage = withoutMention(data.event.text)
+  const threadTimeStamp = data.event.thread_ts || data.event.ts
+  const option = {
+    thread_ts: threadTimeStamp
+  }
   const aiMessage = chat(channelId, userMessage)
 
-  sendMessage(channelId, aiMessage)
+  sendMessage(channelId, aiMessage, option)
 
   return ContentService.createTextOutput("OK")
 }
