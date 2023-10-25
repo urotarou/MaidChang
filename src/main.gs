@@ -1,4 +1,23 @@
 function doPost(event) {
+  // Slash Command
+  switch (event.parameter.command) {
+    case "/vxt": // X to vxTwitter URL
+      const url = event.parameter.text
+
+      if (url.startsWith("https://")) {
+        const result = execCommandVxt(url)
+        return ContentService.createTextOutput(result).setMimeType(ContentService.MimeType.JSON)
+      } else {
+        const response = JSON.stringify(
+          {
+            "text": "URLを指定してね"
+          }
+        )
+        return ContentService.createTextOutput(response).setMimeType(ContentService.MimeType.JSON)
+      }
+  }
+
+  // Mention
   const data = JSON.parse(event.postData.getDataAsString())
 
   // Slack API の認証チェック対応
