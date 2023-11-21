@@ -31,3 +31,7 @@ function loadValue(key) {
 function withoutMention(message) {
   return message.replace(/^<.+> /, "").trim()
 }
+
+function zeroPadding(digits, number) {
+  return number.toString().slice(-digits)
+}

@@ -2,15 +2,30 @@ function doPost(event) {
   // Slash Command
   switch (event.parameter.command) {
     case "/vxt": // X to vxTwitter URL
-      const url = event.parameter.text
+      const vxtUrl = event.parameter.text
 
-      if (url.startsWith("https://")) {
-        const result = execCommandVxt(url)
+      if (vxtUrl.startsWith("https://")) {
+        const result = execCommandVxt(vxtUrl)
         return ContentService.createTextOutput(result).setMimeType(ContentService.MimeType.JSON)
       } else {
         const response = JSON.stringify(
           {
             "text": "URLを指定してね"
+          }
+        )
+        return ContentService.createTextOutput(response).setMimeType(ContentService.MimeType.JSON)
+      }
+    case "/yotei": // create Google Calendar schedule
+      const yoteiParams = event.parameter.text
+      const splitParams = yoteiParams.split(" ")
+
+      if (splitParams.length == 3 && splitParams[0].length == 8 && splitParams[1].length == 4){
+        const result = execCommandYotei(splitParams[0], splitParams[1], splitParams[2])
+        return ContentService.createTextOutput(result).setMimeType(ContentService.MimeType.JSON)
+      } else {
+        const response = JSON.stringify(
+          {
+            "text": "パラメータを指定してね: \"yyyymmdd hhmm イベント名\""
           }
         )
         return ContentService.createTextOutput(response).setMimeType(ContentService.MimeType.JSON)
