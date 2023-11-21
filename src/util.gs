@@ -33,5 +33,10 @@ function withoutMention(message) {
 }
 
 function zeroPadding(digits, number) {
-  return number.toString().slice(-digits)
+  const zeroArray = []
+  for (index = 0; index < digits; index++) {
+    zeroArray.push(0)
+  }
+
+  return (zeroArray.join("") + number.toString()).slice(-digits)
 }
